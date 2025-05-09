@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Developers - Nexus Game Studios</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for developers page */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .team-member {
+            background-color: var(--secondary-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-img {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-member:hover .member-img img {
+            transform: scale(1.05);
+        }
+
+        .member-social {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: var(--transition);
+        }
+
+        .team-member:hover .member-social {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .member-social a {
+            width: 35px;
+            height: 35px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .member-social a:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 25px;
+        }
+
+        .member-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .member-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background-color: rgba(69, 123, 157, 0.2);
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+        }
+
+        .page-header {
+            padding: 150px 0 80px;
+            background: linear-gradient(rgba(13, 13, 13, 0.8), rgba(13, 13, 13, 0.8)), url('https://via.placeholder.com/1920x600/222/fff?text=Developers') no-repeat center center/cover;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-shadow: var(--text-shadow);
+        }
+
+        .page-description {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .join-team {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+            text-align: center;
+        }
+
+        .careers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .career-card {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .career-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .career-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .location i {
+            margin-right: 8px;
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Nexus Game Studios">
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="games.html">Games</a></li>
+                    <li><a href="developers.html" class="active">Developers</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Our Development Team</h1>
+            <p class="page-description">Meet the talented individuals who bring our gaming visions to life with passion, creativity, and technical expertise.</p>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet The Team</h2>
+                <p class="section-subtitle">Our diverse team of gaming enthusiasts pushes the boundaries of what's possible</p>
+            </div>
+            
+            <div class="team-grid">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="https://scontent.fcmb11-2.fna.fbcdn.net/v/t39.30808-6/480300887_1271588973901992_6225171910864535932_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEWkhd4Nml2Jr6LrGa48Xs1jNcTphNGF1CM1xOmE0YXUMEZ7v-4pLJAXb9jsAUU_cANDVIzxrbgtAWnL4_y_eH1&_nc_ohc=L-diO5YkPCUQ7kNvwFFC5mJ&_nc_oc=AdkhE7JjsvUydmC4D67JNtiIPU_zATdszKg5XkOatcE94WLz-WvV6j6Uv9El-Oz-fx-3U0YhIC8cXK4cDlsZVaEU&_nc_zt=23&_nc_ht=scontent.fcmb11-2.fna&_nc_gid=Hlh7syx_1PyufktT9CyLrw&oh=00_AfJH8_jRJXu2UxAdrr5h4BsWfMfPjvBUKM6lwBmSh6vzSw&oe=6823A5C3" alt="Sarah Chen">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Imesh Sanjana</h3>
+                        <div class="member-role">Main Developer</div>
+                        <p class="member-desc">With over 10 years in the industry, Sarah brings innovative gameplay mechanics and immersive world-building to every project.</p>
+                        <div class="member-skills">
+                            <span class="skill-tag">Game Design</span>
+                            <span class="skill-tag">Level Design</span>
+                            <span class="skill-tag">Narrative</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="https://via.placeholder.com/500x600/222/fff?text=Marcus" alt="Marcus Johnson">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Anjana Herath</h3>
+                        <div class="member-role">Technical Director</div>
+                        <p class="member-desc">Marcus oversees the technical aspects of all our projects, ensuring optimal performance and innovative features.</p>
+                        <div class="member-skills">
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">Unreal Engine</span>
+                            <span class="skill-tag">Graphics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="https://via.placeholder.com/500x600/222/fff?text=Elena" alt="Elena Rodriguez">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-artstation"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Nethsara Weerasooriya</h3>
+                        <div class="member-role">Art Director</div>
+                        <p class="member-desc">Elena's unique artistic vision shapes the distinctive visual style that Nexus Games is known for worldwide.</p>
+                        <div class="member-skills">
+                            <span class="skill-tag">Concept Art</span>
+                            <span class="skill-tag">3D Modeling</span>
+                            <span class="skill-tag">Animation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="https://via.placeholder.com/500x600/222/fff?text=Raj" alt="Raj Patel">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Kavindu Heshan</h3>
+                        <div class="member-role">Lead Programmer</div>
+                        <p class="member-desc">Raj specializes in AI programming and procedural generation systems that create unique experiences for players.</p>
+                        <div class="member-skills">
+                            <span class="skill-tag">AI Systems</span>
+                            <span class="skill-tag">Unity</span>
+                            <span class="skill-tag">C#</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="https://via.placeholder.com/500x600/222/fff?text=Yuki" alt="Yuki Tanaka">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-soundcloud"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Nethmina Medagedara</h3>
+                        <div class="member-role">Audio Director</div>
+                        <p class="member-desc">Yuki crafts immersive soundscapes and memorable musical scores that enhance our gaming experiences.</p>
+                        <div class="member-skills">
+                            <span class="skill-tag">Sound Design</span>
+                            <span class="skill-tag">Composition</span>
+                            <span class="skill-tag">Audio Implementation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div class="team-member">
+                    <div class="member-img">
+                        <img src="https://via.placeholder.com/500x600/222/fff?text=Alex" alt="Alex Foster">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-medium-m"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dinuwara Wijerathner</h3>
+                        <div class="member-role">Narrative Designer</div>
+                        <p class="member-desc">Alex weaves compelling stories and creates memorable characters that resonate with players long after they finish our games.</p>
+                        <div class="member-skills">
+                            <span class="skill-tag">Storytelling</span>
+                            <span class="skill-tag">Character Development</span>
+                            <span class="skill-tag">World Building</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/images/logo.png" alt="Nexus Game Studios">
+                    <p>Creating unforgettable gaming experiences since 2015.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="floato.html">Floato</a></li>
+                        <li><a href="developers.html">Developers</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">EULA</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Game Dev Ave, Silicon Valley, CA</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@nexusgames.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Nexus Game Studios. All rights reserved.</p>
+                <div class="footer-extra">
+                    <span>Made with <i class="fas fa-heart"></i> by gamers, for gamers</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
