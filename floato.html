@@ -314,6 +314,54 @@
                 flex-wrap: wrap;
             }
         }
+
+        .trailer-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.trailer-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-color: rgba(230, 57, 70, 0.8);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 2;
+}
+
+.trailer-play:hover {
+    background-color: var(--primary-color);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.trailer-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .trailer-play {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -457,20 +505,21 @@
     </section>
 
     <!-- Game Trailer Section -->
-    <section class="game-trailer-section" id="trailer">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Official Trailer</h2>
-            </div>
-            <div class="trailer-container">
-                <div class="trailer-placeholder">
-                    <div class="trailer-play pulse">
-                        <i class="fas fa-play"></i>
-                    </div>
+<section class="game-trailer-section" id="trailer">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Official Trailer</h2>
+        </div>
+        <div class="trailer-container">
+            <div class="trailer-placeholder">
+                <img src="https://i.postimg.cc/g24kW7T9/floato-cover.jpg" alt="Floato Trailer Thumbnail" class="trailer-thumbnail">
+                <div class="trailer-play pulse">
+                    <i class="fas fa-play"></i>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Gallery Section -->
     <section class="gallery">
@@ -557,57 +606,55 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Additional JavaScript for Floato page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Trailer Play Button Functionality
-            const trailerPlay = document.querySelector('.trailer-play');
-            const trailerPlaceholder = document.querySelector('.trailer-placeholder');
-            
-            if (trailerPlay) {
-                trailerPlay.addEventListener('click', function() {
-                    // Create iframe for YouTube embed
-                    const videoIframe = document.createElement('iframe');
-                    
-                    // Set iframe attributes
-                    videoIframe.setAttribute('width', '100%');
-                    videoIframe.setAttribute('height', '100%');
-                    videoIframe.setAttribute('frameborder', '0');
-                    videoIframe.setAttribute('allowfullscreen', 'true');
-                    
-                    // Replace this URL with your actual YouTube video ID
-                    videoIframe.setAttribute('src', 'https://youtu.be/FxWpSIRrGK0');
-                    
-                    videoIframe.style.position = 'absolute';
-                    videoIframe.style.top = '0';
-                    videoIframe.style.left = '0';
-                    
-                    // Replace placeholder with iframe
-                    trailerPlaceholder.innerHTML = '';
-                    trailerPlaceholder.appendChild(videoIframe);
-                });
-            }
-
-            // Gallery lightbox functionality could be added here
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            galleryItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // Lightbox functionality would go here
-                    // This is a placeholder for implementing a lightbox
-                    console.log('Gallery item clicked: ', this.querySelector('h4').textContent);
-                });
+    // Additional JavaScript for Floato page
+    document.addEventListener('DOMContentLoaded', function() {
+        // Trailer Play Button Functionality
+        const trailerPlay = document.querySelector('.trailer-play');
+        const trailerPlaceholder = document.querySelector('.trailer-placeholder');
+        
+        if (trailerPlay) {
+            trailerPlay.addEventListener('click', function() {
+                // Create iframe for YouTube embed
+                const videoIframe = document.createElement('iframe');
+                
+                // Set iframe attributes
+                videoIframe.setAttribute('width', '100%');
+                videoIframe.setAttribute('height', '100%');
+                videoIframe.setAttribute('frameborder', '0');
+                videoIframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                videoIframe.setAttribute('allowfullscreen', 'true');
+                
+                // Use the correct YouTube embed URL format
+                videoIframe.setAttribute('src', 'https://www.youtube.com/embed/FxWpSIRrGK0?autoplay=1&rel=0&showinfo=0');
+                
+                videoIframe.style.position = 'absolute';
+                videoIframe.style.top = '0';
+                videoIframe.style.left = '0';
+                
+                // Replace placeholder with iframe
+                trailerPlaceholder.innerHTML = '';
+                trailerPlaceholder.appendChild(videoIframe);
             });
+        }
 
-            // Platform selection highlight
-            const platformIcons = document.querySelectorAll('.platform-icon');
-            platformIcons.forEach(icon => {
-                icon.addEventListener('click', function() {
-                    // Remove active class from all icons
-                    platformIcons.forEach(i => i.classList.remove('active'));
-                    // Add active class to clicked icon
-                    this.classList.add('active');
-                });
+        // Gallery lightbox functionality could be added here
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Lightbox functionality would go here
+                console.log('Gallery item clicked: ', this.querySelector('h4').textContent);
             });
         });
-    </script>
+
+        // Platform selection highlight
+        const platformIcons = document.querySelectorAll('.platform-icon');
+        platformIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+                platformIcons.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    });
+</script>
 </body>
 </html>
