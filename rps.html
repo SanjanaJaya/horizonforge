@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Floato - Horizon Forge Studios</title>
+    <title>Rock, Paper & Scissors - Horizon Forge Studios</title>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Additional styles specific to the Floato page */
+        /* Additional styles specific to the Rock, Paper & Scissors page */
         .game-banner {
             height: 60vh;
-            background: linear-gradient(rgba(13, 13, 13, 0.8), rgba(13, 13, 13, 0.8)), url('https://i.postimg.cc/g24kW7T9/floato-cover.jpg') no-repeat center center/cover;
+            background: linear-gradient(rgba(13, 13, 13, 0.8), rgba(13, 13, 13, 0.8)), linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             background-size: cover;
             background-position: center;
             display: flex;
@@ -317,52 +317,117 @@
         }
 
         .trailer-thumbnail {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
-.trailer-play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    height: 80px;
-    background-color: rgba(230, 57, 70, 0.8);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: var(--transition);
-    z-index: 2;
-}
+        .trailer-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background-color: rgba(230, 57, 70, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 2;
+        }
 
-.trailer-play:hover {
-    background-color: var(--primary-color);
-    transform: translate(-50%, -50%) scale(1.1);
-}
+        .trailer-play:hover {
+            background-color: var(--primary-color);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
 
-.trailer-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
+        .trailer-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
-@media (max-width: 768px) {
-    .trailer-play {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-    }
-}
+        @media (max-width: 768px) {
+            .trailer-play {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Rock Paper Scissors specific styles */
+        .rps-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rps-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(13, 13, 13, 0.7);
+            z-index: 1;
+        }
+
+        .rps-banner .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .rps-symbols {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.1;
+            font-size: 8rem;
+            color: var(--primary-color);
+            z-index: 1;
+        }
+
+        .symbol-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .symbol-animation:nth-child(2) {
+            animation-delay: -1s;
+        }
+
+        .symbol-animation:nth-child(3) {
+            animation-delay: -2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -395,10 +460,16 @@
     </header>
 
     <!-- Game Banner -->
-    <section class="game-banner">
+    <section class="game-banner rps-banner">
+        <div class="rps-symbols">
+            <div class="symbol-animation">✂️</div>
+            <div class="symbol-animation">📄</div>
+            <div class="symbol-animation">🗿</div>
+        </div>
         <div class="container">
             <div class="banner-content">
-                <h1 class="banner-title">Floato</h1>
+                <h1 class="banner-title">Rock, Paper & Scissors</h1>
+                <p class="banner-subtitle">The Classic Game Reimagined with Modern Twists</p>
                 <div class="hero-buttons">
                     <a href="#trailer" class="btn btn-primary">Watch Trailer</a>
                     <a href="#buy" class="btn btn-secondary">Play For Free</a>
@@ -414,7 +485,7 @@
                 <div class="game-meta">
                     <div class="game-meta-item">
                         <p class="meta-title">Release Date</p>
-                        <p class="meta-value">May 22, 2025</p>
+                        <p class="meta-value">Coming Soon 2025</p>
                     </div>
                     <div class="game-meta-item">
                         <p class="meta-title">Developer</p>
@@ -426,143 +497,164 @@
                     </div>
                     <div class="game-meta-item">
                         <p class="meta-title">Platforms</p>
-                        <p class="meta-value">Android-Google Playstore</p>
+                        <p class="meta-value">Android, iOS, Web</p>
                     </div>
                     <div class="game-meta-item">
                         <p class="meta-title">Genre</p>
-                        <p class="meta-value">Action</p>
+                        <p class="meta-value">Casual, Strategy</p>
                     </div>
                     <div class="game-meta-item">
                         <p class="meta-title">Players</p>
-                        <p class="meta-value">Single Player</p>
+                        <p class="meta-value">Single & Multiplayer</p>
                     </div>
                     <div class="game-meta-item">
                         <p class="meta-title">Rating</p>
-                        <p class="meta-value highlight">5.0</p>
+                        <p class="meta-value highlight">Coming Soon</p>
                     </div>
                 </div>
                 <div class="game-description">
-                    <h2>About Floato</h2>
-                    <p>Floato takes you on an exhilarating aerial adventure across Sri Lanka's most breathtaking locations. In this captivating portrait-mode shooter, you'll defend 25 iconic Sri Lankan cities from waves of hostile birds and dangerous enemy aircraft.Begin your journey in Anuradhapura's bustling cityscape and progress through diverse environments including the misty highlands of Nuwara Eliya, ancient temples of Polonnaruwa, pristine beaches of Matara, and the wildlife-rich plains of Monaragala. Each level features meticulously crafted visuals that capture the essence and beauty of Sri Lanka's most treasured destinations.</p>
+                    <h2>About Rock, Paper & Scissors</h2>
+                    <p>Experience the timeless classic like never before! Our modern take on Rock, Paper & Scissors brings this beloved game into the digital age with stunning visuals, engaging animations, and exciting new game modes that will keep you entertained for hours.</p>
                     
-                    <p>As threats intensify across your journey, you'll collect and upgrade a variety of birds, each with unique abilities. Deploy swift kingfishers for precision strikes, powerful hornbills for explosive damage, or defensive peacocks to shield your forces. Strategic bird selection becomes crucial as you face increasingly challenging waves of enemies.</p>
+                    <p>Challenge yourself in single-player tournaments against increasingly intelligent AI opponents, each with their own unique playing styles and strategies. From the predictable Rookie to the mind-bending Grandmaster, every AI brings a different challenge to master.</p>
                     
-                    <p>The intuitive touch controls make Floato accessible for casual players, while the progressive difficulty curve and strategic depth will satisfy even the most experienced gamers. The immersive soundscape features authentic Sri Lankan musical elements that enhance the cultural experience.Daily challenges and seasonal events offer fresh content and exciting rewards, while global leaderboards let you compete with players worldwide for the title of ultimate Sky Guardian.</p>
+                    <p>Connect with friends and players worldwide in our multiplayer modes. Battle in real-time matches, join tournaments, or create private rooms for casual games with friends. Our advanced matchmaking system ensures fair and competitive gameplay for all skill levels.</p>
                     
-                    <p>Download Floato today and experience the thrill of aerial combat while exploring Sri Lanka's most beautiful locations—one city at a time!</p>
+                    <p>Unlock beautiful themes, collect rare hand gestures, and customize your gaming experience. With seasonal events, daily challenges, and a comprehensive achievement system, there's always something new to discover in this reimagined classic!</p>
                 </div>
             </div>
 
             <div class="section-header">
                 <h2 class="section-title">Key Features</h2>
-                <p class="section-subtitle">What makes Floato a must-play experience</p>
+                <p class="section-subtitle">What makes our Rock, Paper & Scissors special</p>
             </div>
 
             <div class="game-features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-map"></i>
+                        <i class="fas fa-robot"></i>
                     </div>
-                    <h3 class="feature-title">Over 25 Cities To Explore</h3>
-                    <p>By including 25+ cities from Sri Lanka, the game would offer players diverse environments to discover - potentially including major urban centers like Colombo (the capital), Kandy, Galle, Jaffna, and many smaller towns and cities across the island.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3 class="feature-title">Over 50 Obstacles</h3>
-                    <p>This is another promotional feature for the same video game set in Sri Lanka. The statement "Over 50 Obstacles" indicates that the game includes at least 50 different challenges, barriers, or impediments that players must overcome during gameplay.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-puzzle-piece"></i>
-                    </div>
-                    <h3 class="feature-title">Different Fire Powers For Each Characters</h3>
-                    <p>Character system featuring multiple playable characters, each with unique fire-based abilities or powers.</p>
+                    <h3 class="feature-title">Smart AI Opponents</h3>
+                    <p>Face off against 8 unique AI personalities, each with distinct playing patterns and strategies. From beginner-friendly to expert-level challenges that adapt to your playstyle.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3 class="feature-title">Endless Single Player Mode</h3>
-                    <p>Survival modes where you last as long as possible against increasingly difficult waves of enemies.</p>
+                    <h3 class="feature-title">Multiplayer Battles</h3>
+                    <p>Challenge friends locally or compete against players worldwide. Real-time matches, tournaments, and ranked gameplay with global leaderboards.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-dragon"></i>
+                        <i class="fas fa-palette"></i>
                     </div>
-                    <h3 class="feature-title">Collect Special abilities</h3>
-                    <p>These special abilities are presented as collectibles.</p>
+                    <h3 class="feature-title">Customizable Themes</h3>
+                    <p>Unlock and choose from dozens of beautiful themes, hand animations, and sound effects. Personalize your gaming experience with unique visual styles.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-book"></i>
+                        <i class="fas fa-trophy"></i>
                     </div>
-                    <h3 class="feature-title">Dual Language Support</h3>
-                    <p>Language support for both Sinhala and English.</p>
+                    <h3 class="feature-title">Tournament Mode</h3>
+                    <p>Participate in daily tournaments, seasonal events, and special challenges. Climb the ranks and earn exclusive rewards and achievements.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Statistics & Analytics</h3>
+                    <p>Track your performance with detailed statistics, win rates, and gameplay analytics. Improve your strategy with comprehensive match history.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="feature-title">Cross-Platform Play</h3>
+                    <p>Play seamlessly across all devices. Your progress, achievements, and unlocks sync automatically across mobile, tablet, and web platforms.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Game Trailer Section -->
-<section class="game-trailer-section" id="trailer">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Official Trailer</h2>
-        </div>
-        <div class="trailer-container">
-            <div class="trailer-placeholder">
-                <img src="https://i.postimg.cc/g24kW7T9/floato-cover.jpg" alt="Floato Trailer Thumbnail" class="trailer-thumbnail">
-                <div class="trailer-play pulse">
-                    <i class="fas fa-play"></i>
+    <section class="game-trailer-section" id="trailer">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Official Trailer</h2>
+                <p class="section-subtitle">See the classic game in action</p>
+            </div>
+            <div class="trailer-container">
+                <div class="trailer-placeholder">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; position: relative;">
+                        <div style="font-size: 4rem; opacity: 0.3;">🎮</div>
+                    </div>
+                    <div class="trailer-play pulse">
+                        <i class="fas fa-play"></i>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Gallery Section -->
     <section class="gallery">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Gallery</h2>
-                <p class="section-subtitle">Screenshots from the world of Floato</p>
+                <p class="section-subtitle">Screenshots from Rock, Paper & Scissors</p>
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="assets/images/1.png" alt="Floato Screenshot 1">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">✂️</div>
                     <div class="gallery-overlay">
-                        <h4>Unlock Different Birds</h4>
+                        <h4>Modern Hand Animations</h4>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/2.png" alt="Floato Screenshot 2">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #764ba2 0%, #667eea 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">📄</div>
                     <div class="gallery-overlay">
-                        <h4>Collect Different abilities</h4>
+                        <h4>Multiplayer Battles</h4>
                     </div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/3.png" alt="Floato Screenshot 3">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🗿</div>
                     <div class="gallery-overlay">
-                        <h4>Over 25 Sri Lankan Cities</h4>
+                        <h4>Tournament Mode</h4>
                     </div>
                 </div>
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #764ba2 0%, #667eea 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🏆</div>
+                    <div class="gallery-overlay">
+                        <h4>Achievements & Rewards</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🎨</div>
+                    <div class="gallery-overlay">
+                        <h4>Customizable Themes</h4>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #764ba2 0%, #667eea 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">📊</div>
+                    <div class="gallery-overlay">
+                        <h4>Statistics Dashboard</h4>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-
     <!-- CTA Section -->
     <section class="cta-section" id="buy">
         <div class="container">
-            <h2 class="cta-title">Begin Your Sky Adventure Today</h2>
-            <p class="cta-description">Floato is available now on Google Playstore. Coming Soon To Apple Appstore.</p>
+            <h2 class="cta-title">Ready to Play?</h2>
+            <p class="cta-description">Rock, Paper & Scissors is coming soon to all platforms. Be the first to experience the classic game reimagined!</p>
             <div class="platforms">
-                <div class="platform-icon"><i class="fab fa-google-play platform-icon"></i></div>
+                <div class="platform-icon"><i class="fab fa-google-play"></i></div>
+                <div class="platform-icon"><i class="fab fa-apple"></i></div>
+                <div class="platform-icon"><i class="fas fa-globe"></i></div>
             </div>
-            <a href="https://play.google.com/store/apps/details?id=com.horizonforge.floato_the_game" class="btn btn-secondary">Download Now For Free</a>
+            <a href="#" class="btn btn-secondary">Coming Soon - Wishlist Now</a>
         </div>
     </section>
 
@@ -604,55 +696,58 @@
 
     <script src="js/main.js"></script>
     <script>
-    // Additional JavaScript for Floato page
-    document.addEventListener('DOMContentLoaded', function() {
-        // Trailer Play Button Functionality
-        const trailerPlay = document.querySelector('.trailer-play');
-        const trailerPlaceholder = document.querySelector('.trailer-placeholder');
-        
-        if (trailerPlay) {
-            trailerPlay.addEventListener('click', function() {
-                // Create iframe for YouTube embed
-                const videoIframe = document.createElement('iframe');
-                
-                // Set iframe attributes
-                videoIframe.setAttribute('width', '100%');
-                videoIframe.setAttribute('height', '100%');
-                videoIframe.setAttribute('frameborder', '0');
-                videoIframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-                videoIframe.setAttribute('allowfullscreen', 'true');
-                
-                // Use the correct YouTube embed URL format
-                videoIframe.setAttribute('src', 'https://www.youtube.com/embed/FxWpSIRrGK0?autoplay=1&rel=0&showinfo=0');
-                
-                videoIframe.style.position = 'absolute';
-                videoIframe.style.top = '0';
-                videoIframe.style.left = '0';
-                
-                // Replace placeholder with iframe
-                trailerPlaceholder.innerHTML = '';
-                trailerPlaceholder.appendChild(videoIframe);
-            });
-        }
+        // Additional JavaScript for Rock, Paper & Scissors page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Trailer Play Button Functionality
+            const trailerPlay = document.querySelector('.trailer-play');
+            const trailerPlaceholder = document.querySelector('.trailer-placeholder');
+            
+            if (trailerPlay) {
+                trailerPlay.addEventListener('click', function() {
+                    // For now, just show an alert since no trailer URL is provided
+                    alert('Rock, Paper & Scissors trailer coming soon!');
+                    
+                    // When you have a trailer URL, uncomment and modify this code:
+                    /*
+                    const videoIframe = document.createElement('iframe');
+                    videoIframe.setAttribute('width', '100%');
+                    videoIframe.setAttribute('height', '100%');
+                    videoIframe.setAttribute('frameborder', '0');
+                    videoIframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                    videoIframe.setAttribute('allowfullscreen', 'true');
+                    videoIframe.setAttribute('src', 'YOUR_YOUTUBE_EMBED_URL_HERE?autoplay=1&rel=0&showinfo=0');
+                    videoIframe.style.position = 'absolute';
+                    videoIframe.style.top = '0';
+                    videoIframe.style.left = '0';
+                    trailerPlaceholder.innerHTML = '';
+                    trailerPlaceholder.appendChild(videoIframe);
+                    */
+                });
+            }
 
-        // Gallery lightbox functionality could be added here
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        galleryItems.forEach(item => {
-            item.addEventListener('click', function() {
-                // Lightbox functionality would go here
-                console.log('Gallery item clicked: ', this.querySelector('h4').textContent);
+            // Gallery lightbox functionality
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    console.log('Gallery item clicked: ', this.querySelector('h4').textContent);
+                });
+            });
+
+            // Platform selection highlight
+            const platformIcons = document.querySelectorAll('.platform-icon');
+            platformIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    platformIcons.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Animate symbols in banner
+            const symbols = document.querySelectorAll('.symbol-animation');
+            symbols.forEach((symbol, index) => {
+                symbol.style.animationDelay = `-${index}s`;
             });
         });
-
-        // Platform selection highlight
-        const platformIcons = document.querySelectorAll('.platform-icon');
-        platformIcons.forEach(icon => {
-            icon.addEventListener('click', function() {
-                platformIcons.forEach(i => i.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    });
-</script>
+    </script>
 </body>
 </html>
